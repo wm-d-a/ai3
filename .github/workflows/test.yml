@@ -31,4 +31,4 @@ jobs:
 
       - name: Run tests
         run:
-          make test
+          python -m pytest app/tests/test.py
