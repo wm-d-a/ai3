@@ -21,3 +21,5 @@ def test_empty(client):
         }
     )
     assert response.status_code == 404
+
+# python -m pytest app/tests/test.py
