@@ -3,3 +3,4 @@ torch
 tensorflow
 flask
 pytest
+numpy
