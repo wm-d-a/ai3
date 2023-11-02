@@ -4,3 +4,4 @@ tensorflow
 flask
 pytest
 numpy
+langdetect

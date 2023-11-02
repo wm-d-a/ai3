@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, request, jsonify, make_response
 from app.ai import get_corrected_text
+from langdetect import detect
 
 
 def create_app(test_config=None):
@@ -34,6 +35,9 @@ def create_app(test_config=None):
         if text is None:
             return make_response(jsonify({'corrected_text': "INPUT TEXT"}), 404)
         else:
-            corrected_text = get_corrected_text("Fix grammatical errors in this sentence: " + text)
-            return make_response(jsonify({'corrected_text': corrected_text}), 200)
+            if detect(text) == 'en':
+                corrected_text = get_corrected_text("Fix grammatical errors in this sentence: " + text)
+                return make_response(jsonify({'corrected_text': corrected_text}), 200)
+            else:
+                return make_response(jsonify({'corrected_text': 'INPUT_ENGLISH_TEXT'}), 404)
     return app
