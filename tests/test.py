@@ -23,3 +23,14 @@ def test_empty(client):
     assert response.status_code == 404
 
 # python -m pytest app/tests/test.py
+
+def test_lang(client):
+    response = client.get(
+        "/correct_your_text",
+        query_string={
+            'text': 'тест',
+        }
+    )
+    assert response.status_code == 404
+    assert response.json == {
+           'corrected_text': 'INPUT_ENGLISH_TEXT'}
